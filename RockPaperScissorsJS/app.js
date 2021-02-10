@@ -28,7 +28,7 @@ function wordConverter (letter) {
     if (letter === "s") return "Scissors";
 }
 
-//Write a function that makes the buttons do something when you click on it 
+//Write a function that makes the buttons responsive when you click on it. The functions pass the value for the button div to a function.
 function main () {
     rock_div.addEventListener('click', function () {
         game('r');
@@ -47,21 +47,21 @@ function main () {
 function game (userChoice) {
     let computerChoice = computerSelection();
     switch (userChoice + computerChoice) {
-        //Define wining case
+        //Define the winning cases
         case "rs":
         case "sp":
         case "pr":
             win(userChoice, computerChoice);
             break;
         
-        //Define losing cases
+        //Define the losing cases
         case "ps":
         case "sr":
         case "rp":
             lose(userChoice, computerChoice);
             break;
         
-        //Define draws
+        //Define the draws
         case "pp":
         case "rr":
         case "ss":
@@ -79,7 +79,9 @@ function win (userChoice, computerChoice) {
     let smallUserWord = "user".fontsize(3).sub();
     let smallCompWord = "comp".fontsize(3).sub();
     results_p.innerHTML = `${wordConverter(userChoice)}${smallUserWord} beats ${wordConverter(computerChoice)}${smallCompWord}. User Wins!!!`
+    // This creates a green glow
     document.getElementById(userChoice).classList.add("green-glow");
+    //This removes it after 300ms
     setTimeout(function () {document.getElementById(userChoice).classList.remove("green-glow")}, 300);
 }
 
@@ -90,7 +92,9 @@ function lose (userChoice, computerChoice) {
     let smallUserWord = "user".fontsize(3).sub();
     let smallCompWord = "comp".fontsize(3).sub();
     results_p.innerHTML = `${wordConverter(userChoice)}${smallUserWord} loses to ${wordConverter(computerChoice)}${smallCompWord}. You Lose :(`
+    // This creates a red glow
     document.getElementById(userChoice).classList.add("red-glow");
+    //This removes it after 300ms
     setTimeout(function () {document.getElementById(userChoice).classList.remove("red-glow")}, 300);
 }
 
@@ -98,10 +102,13 @@ function draw (userChoice, computerChoice) {
     let smallUserWord = "user".fontsize(3).sub();
     let smallCompWord = "comp".fontsize(3).sub();
     results_p.innerHTML = `${wordConverter(userChoice)}${smallUserWord} equals ${wordConverter(computerChoice)}${smallCompWord}. It's a draw ~~~`
+    // This creates a gray glow
     document.getElementById(userChoice).classList.add("gray-glow");
+    //This removes it after 300ms
     setTimeout(function () {document.getElementById(userChoice).classList.remove("gray-glow")}, 300);
 }
 
+// call your main function
 main();
 
 // This function refreshes the page 
